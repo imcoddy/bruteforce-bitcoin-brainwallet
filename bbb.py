@@ -68,7 +68,7 @@ def main():
         sys.exit(1)
 
     # Open output file for found addresses
-    file_header = 'dictionary word, received bitcoins, wallet address, private address, current balance'
+    file_header = 'wallet address, private address, received bitcoins, current balance, dictionary word'
     logging.info("Opening output file {} for writing".format(args.output_file))
     try:
         f_found_addresses = codecs.open(args.output_file, 'w', 'utf8')
@@ -96,8 +96,7 @@ def main():
         current_balance = blockexplorer.get_balance(brain_wallet.address)
 
         # Output results
-        output = '{},{:.8f},{},{},{:.8f}'.format(dictionary_word, received_bitcoins, brain_wallet.address,
-                                                    brain_wallet.private_key, current_balance)
+        output = '{},{},{:.8f},{:.8f},{}'.format(brain_wallet.address, brain_wallet.private_key, received_bitcoins, current_balance, dictionary_word)
         logging.info(output)
         f_found_addresses.write(output + '\n')
 

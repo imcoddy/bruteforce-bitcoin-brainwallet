@@ -12,6 +12,6 @@ class BrainWallet:
             keypair = BitcoinKeypair.from_passphrase(self.passphrase)
             self.address = keypair.address()
             self.public_key = keypair.public_key()
-            self.private_key = keypair.private_key()
+            self.private_key = keypair.private_key('wif')
         except Exception as e:
             logging.warning("Failed to generate keypair for passphrase '{}'. Error: {}".format(passphrase, e.args))
